@@ -3,7 +3,8 @@ require 'sinatra'
 require 'rp'
 
 get '/' do
-  erb :home
+  @assertions = Assertion.all :order => 'updated_at DESC'
+  erb :assertions
 end
 
 get '/stories' do

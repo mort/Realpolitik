@@ -1,14 +1,17 @@
 <h2><%= @story.title %></h2>
-<p>
-	<%= @story.summary %>
-</p>
 
+	<%= @story.summary %> 
+</p>
+<p>
+	<a href="<%= @story.url %>">Leer</a>
+</p>
+<p>
 <% unless @story.entities.nil? %>
 <ul>
 	
 	<% @story.entities.each do |e| %>
 		<li>
-			<a href="/entities/<%= e.id %>"><%= e.text %></a>
+			<a href="/entities/<%= e.id %>"><%= e.text %></a> 
 		</li>
 	<% end %>
 </ul>

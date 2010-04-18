@@ -1,12 +1,14 @@
-<h2>Creemos que </h2>
+<h2>Sabemos que </h2>
 
 <% unless @assertions.nil?  %>
-<ul>
+<table>
 	<% @assertions.each do |a| 
 	 l = (a.status == 0) ? 'Es falso que' : 'Es cierto que' 
-	 v = (a.status == 1) ? 'Marcar como falso' : 'Marcar como cierto'	
+	 v = (a.status == 1) ? 'Corregir, es falso' : 'Corregir, es cierto'	
 	%>
-	<li>
+	<tr>
+		<td>
+			
 		<%= l %>
 		<a href="/entities/<%= a.subject.id %>">
 			<%= a.subject.text %> 
@@ -16,12 +18,15 @@
 		<a href="/entities/<%= a.predicate.id %>">
 			<%= a.predicate.text %>
 		</a>
+		</td>
+		<td>
+			
 		<form action="/assertions/<%= a.id %>/toggle" method="post">
 			<p>
 				<input type="submit" value="<%= v %>">
 			</p>
 		</form>
-	</li>
+	</td>
   <% end %>	
 </ul>
 <% end %>
