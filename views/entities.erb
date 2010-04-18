@@ -7,10 +7,6 @@
 	</p>
 	
 <table>
-	
-	
-<% @entities.each do |e| %>
-<tr>
 	<th>
 		&nbsp;
 	</th>
@@ -26,13 +22,17 @@
 	<th>
 		Noticias
 	</th>
+	
+<% @entities.each do |e| %>
+<tr>
+
 </tr>
 <tr>
 	<td><input type="checkbox" name="ids[]" value="<%= e.id %>"></td>
 	<td><a href="/entities/<%= e.id %>"><%= e.text %></a></td>
-	<td><%= e.as_subject.count %></td>
-	<td><%= e.as_predicate.count %></td>
-	<td><%= e.stories.count %></td>
+	<td><a href="/entities/<%= e.id %>#subject"><%= e.as_subject.count %></a></td>
+	<td><a href="/entities/<%= e.id %>#predicate"><%= e.as_predicate.count %></td>
+	<td><a href="/entities/<%= e.id %>#stories"><%= e.stories.count %></td>
 
 </tr>
 <% end %>	

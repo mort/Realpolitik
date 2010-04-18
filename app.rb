@@ -18,7 +18,7 @@ get '/stories/:id' do
 end
 
 get '/entities' do
-  @entities = Entity.all :order => 'text ASC'
+  @entities = Entity.all :include => [:as_predicate, :as_subject, :stories], :order => 'text ASC'
   erb :entities
 end
 
@@ -38,7 +38,7 @@ post '/entities/:entity_id/assertions' do
 end
 
 get '/assertions' do
-  @assertions = Assertion.all :order => 'updated_at DESC'
+  @assertions = Assertion.all :include => [:predicate, :subject], :order => 'updated_at DESC'
   
   erb :assertions
 end
@@ -63,3 +63,6 @@ get '/autocomplete' do
   erb :autocomplete, :layout => false
 end
 
+get '/about' do
+  erb :about
+end
