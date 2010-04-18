@@ -1,0 +1,76 @@
+<h2>
+	<%= @entity.text %>
+</h2>
+
+<hr>
+<h3>Relacionar con otra entidad</h3>
+<form action="/entities/<%= @entity.id %>/assertions" method="post">
+
+	<p>
+		<select name="assertion[verb]">
+			<% @verbs.each do |verb, text| %>
+			<option value="<%= verb %>">
+				<%= text %>
+			</option>
+			<% end %>
+		</select>	
+	</p>
+	
+	<p>
+		<select name="assertion[predicate_id]">
+			<% @entities.each do |entity| %>
+				<option value="<%= entity.id %>">
+					<%= entity.text %>
+				</option>
+			<% end %>
+		</select>	
+	</p>
+	<p>
+		<input type="submit" value="Crear">
+	</p>
+</form>	
+<hr>
+
+<h3>De <%= @entity.text %> sabemos que ..</h3>
+
+<ul>
+<% @entity.as_subject.true.each do |a| %>
+<li>
+	<%= a.text %>
+	<a href="/entities/<%= a.predicate.id %>">
+		<%= a.predicate.text %>
+	</a>
+</li>
+<% end %>
+
+</ul>
+
+<h3>También se dice de <%= @entity.text %> que </h3>
+
+<ul>
+<% @entity.as_predicate.true.each do |a| %>
+<li>
+	<a href="/entities/<%= a.subject.id %>">
+		<%= a.subject.text %>
+	</a>
+	<%= a.text %>
+	
+</li>
+<% end %>
+
+</ul>
+
+<hr>
+
+<h3><%= @entity.text %> en las noticias</h3>
+
+<% unless @entity.stories.nil? %>
+<ul>
+	
+	<% @entity.stories.each do |s| %>
+		<li>
+			<a href="/stories/<%= s.id %>"><%= s.title %></a> (<%= s.source %>)
+		</li>
+	<% end %>
+</ul>
+<% end %>

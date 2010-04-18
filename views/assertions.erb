@@ -1,0 +1,27 @@
+<h2>Creemos que </h2>
+
+<% unless @assertions.nil?  %>
+<ul>
+	<% @assertions.each do |a| 
+	 l = (a.status == 0) ? 'Es falso que' : 'Es cierto que' 
+	 v = (a.status == 1) ? 'Marcar como falso' : 'Marcar como cierto'	
+	%>
+	<li>
+		<%= l %>
+		<a href="/entities/<%= a.subject.id %>">
+			<%= a.subject.text %> 
+		</a>
+		<%= a.text %> 
+		
+		<a href="/entities/<%= a.predicate.id %>">
+			<%= a.predicate.text %>
+		</a>
+		<form action="/assertions/<%= a.id %>/toggle" method="post">
+			<p>
+				<input type="submit" value="<%= v %>">
+			</p>
+		</form>
+	</li>
+  <% end %>	
+</ul>
+<% end %>

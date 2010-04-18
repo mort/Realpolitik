@@ -1,0 +1,8 @@
+require 'rubygems'
+require 'feedzirra'
+require 'digest/md5'
+require 'alchemy'
+require 'models'
+require 'cache'
+require 'juicer'
+require 'crack'

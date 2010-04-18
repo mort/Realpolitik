@@ -1,0 +1,10 @@
+<h1>Noticias</h1>
+
+<ul>
+	
+<% @stories.each do |s| %>
+<li>	
+	<a href="/stories/<%= s.id %>"><%= s.title %></a> (<%= s.source %>)
+</li>
+<% end %>	
+</ul>

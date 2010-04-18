@@ -1,0 +1,43 @@
+<h1>Entidades</h1>
+
+
+<form action="/entities/mass_delete" method="post">
+	<p>
+		<input type="submit" value="Borrar">
+	</p>
+	
+<table>
+	
+	
+<% @entities.each do |e| %>
+<tr>
+	<th>
+		&nbsp;
+	</th>
+	<th>
+		Nombre
+	</th>
+	<th>
+		Hechos conocidos
+	</th>
+	<th>
+		Hechos relacionados
+	</th>
+	<th>
+		Noticias
+	</th>
+</tr>
+<tr>
+	<td><input type="checkbox" name="ids[]" value="<%= e.id %>"></td>
+	<td><a href="/entities/<%= e.id %>"><%= e.text %></a></td>
+	<td><%= e.as_subject.count %></td>
+	<td><%= e.as_predicate.count %></td>
+	<td><%= e.stories.count %></td>
+
+</tr>
+<% end %>	
+</table>
+<p>
+	<input type="submit" value="Borrar">
+</p>
+</form>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Realpolitik</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Manuel Gonzalez Noriega">
+	<!-- Date: 2010-04-17 -->
+	
+	<link src="/javascript/jquery-autocomplete/jquery.autocomplete.css" type="text/css" rel="stylesheet">
+
+	 <script src="http://www.google.com/jsapi?key=ABQIAAAAfpkOYf0G8-yUzenk0rh5-BQ1tzGPPaGfOPSkzcmytIooWIcnLhQmOmR77JCjgdztf9U7mD6oR4erUA" type="text/javascript">
+	</script>
+
+	<script type="text/javascript">
+		google.load("jquery", "1.4.2");
+  		google.load("jqueryui", "1.8.0");
+	</script>
+	
+	<script type="text/javascript" src="/javascript/jquery-autocomplete/jquery.autocomplete.min.js">
+	</script>
+	
+	<script type="text/javascript">
+		$(function() {			
+			$('input#search').autocomplete('/autocomplete',{
+			  formatItem: function(item) {
+				var arr = item.split('|');
+			    return arr[0];
+			  }
+			}).result(function(event, item) {
+			  	var arr = item.split('|');
+				location.href = '/entities/'+arr[1];
+			}
+			);		
+		})
+	</script>
+</head>
+<body>
+<h1>Realpolitik</h1>
+<ul>
+	<li>
+		<a href="/entities">Actores</a>
+	</li>
+	<li>
+		<a href="/stories">
+			Noticias
+		</a>
+	</li>
+	<li>
+		<a href="/assertions">
+			Se dice que ..
+		</a>
+	</li>
+</ul>
+<%= yield %>
+</body>
+</html>
