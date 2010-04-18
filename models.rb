@@ -3,12 +3,13 @@ require 'active_record'
 
 ActiveRecord::Base.logger = Logger.new(STDERR)
 ActiveRecord::Base.colorize_logging = false
-
-ActiveRecord::Base.establish_connection(
-    :adapter => "mysql",
-    :username  => "root",
-    :database => 'realpolitik'
-)
+dbconfig = YAML.load(File.read('config/database.yml'))
+ActiveRecord::Base.establish_connection dbconfig['production']
+# ActiveRecord::Base.establish_connection(
+#     :adapter => "mysql",
+#     :username  => "root",
+#     :database => 'realpolitik'
+# )
 
  ActiveRecord::Schema.define do
 #     create_table :entities, :options => "ENGINE=MyISAM" do |table|
